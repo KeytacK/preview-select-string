@@ -1,0 +1,14 @@
+{
+    "manifest_version": 2,
+    "version": "1.0",
+    "name": "preview select string",
+    "description": "Add pre tag to selected strings.",
+    "permissions": [
+        "menus"
+    ],
+    "background": {
+        "scripts": [
+            "background.js"
+        ]
+    }
+}
