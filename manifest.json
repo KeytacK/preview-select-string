@@ -3,12 +3,14 @@
     "version": "1.0",
     "name": "preview select string",
     "description": "Add pre tag to selected strings.",
-    "permissions": [
-        "menus"
-    ],
+    "permissions": ["menus"],
     "background": {
-        "scripts": [
-            "background.js"
-        ]
-    }
+        "scripts": ["background.js"]
+    },
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["app.js"]
+        }
+    ]
 }

@@ -1,13 +1,13 @@
 browser.menus.create({
-	id: "log-selection",
-	title: "menu item selection logger",
+	id: "preview",
+	title: "preview select string",
 	contexts: ["selection"]
 });
 
 browser.menus.onClicked.addListener((info, tab) => {
 	switch (info.menuItemId) {
-		case "log-selection":
-			console.log(info.selectionText);
+		case "preview":
+			browser.tabs.sendMessage(tab.id, {"select": true});
 			break;
 	}
 });
