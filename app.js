@@ -5,7 +5,7 @@ browser.runtime.onMessage.addListener( (message) => {
 	code.textContent = indent(select.toString());
 
 	var insElm = document.createElement('pre');
-	insElm.innerHTML = code.outerHTML;
+	insElm.appendChild(code);
 
 	var range = select.getRangeAt(0);
 	range.deleteContents();
