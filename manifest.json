@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "version": "1.0",
   "name": "preview select string",
-  "description": "Add pre tag to selected strings.",
+  "description": "Add pre tag and indent to selected strings.",
   "permissions": ["menus"],
   "background": {
     "scripts": [
