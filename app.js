@@ -2,7 +2,7 @@ browser.runtime.onMessage.addListener( (message) => {
 	var select = window.getSelection();
 
 	var code = document.createElement('code');
-	code.textContent = indent(select.toString());
+	code.textContent = addIndent(select.toString());
 
 	var insElm = document.createElement('pre');
 	insElm.appendChild(code);
@@ -12,34 +12,37 @@ browser.runtime.onMessage.addListener( (message) => {
 	range.insertNode(insElm);
 });
 
-var indent = str => {
+function addIndent(str) {
 	var depth = 0;
 	var rows = str.split(/\r\n/);
+
+	var indent = (sentence) => getIndent(depth) + sentence + "\r\n";
 
 	var ret = "";
 	for (const row of rows) {
 
 		if (row.match(/\{$/)) {
-			ret += getIndent(depth) + row + "\r\n";
+			ret += indent(row);
 			depth++;
 		} else if (row.match(/^\}/)) {
 			depth--;
-			ret += getIndent(depth) + row + "\r\n";
+			ret += indent(row);
 		} else {
-			ret += getIndent(depth) + row + "\r\n";
+			ret += indent(row);
 		}
 
 	}
 
 	return ret;
-};
+}
 
-const INDENT_UNIT = "  ";
-var getIndent = depth => {
+function getIndent (depth) {
+	const INDENT_UNIT = "  ";
+
 	var indent = "";
 	for (let i = 0; i <= depth; ++i) {
 		indent += INDENT_UNIT;
 	}
 
 	return indent;
-};
+}
